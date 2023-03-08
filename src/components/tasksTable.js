@@ -1,9 +1,9 @@
-// import { b } from "../lib/builder.js";
+// import { b } from "../lib/builder";
 
 
 
 
-// export function createTaskTable(display) {
+// export function createTaskTable() {
 //   const form = document.querySelector("#form");
 //   const tasks = [];
 
@@ -26,6 +26,7 @@
 //     ],
 //   });
 
+//   let display = document.querySelector("#display")
 //   display.appendChild(tasksTable);
 
 //   form.addEventListener("submit", (event) => {
