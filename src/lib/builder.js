@@ -1,4 +1,4 @@
-function b(tag, buildContext) {
+export function b(tag, buildContext) {
   const element = document.createElement(tag);
 
   for (let property in buildContext) {
@@ -20,4 +20,4 @@ function b(tag, buildContext) {
 
   return element;
 }
-module.exports.b = b;
+

@@ -1,4 +1,8 @@
 import { b } from "../../lib/builder";
+import { createToday } from "./createToday";
+import { createAddTaskForm } from "./toDoList/addTaskForm";
+import { createInbox } from "./createInbox";
+
 
 export function createNavbar() {
     // Create navbar
@@ -32,10 +36,11 @@ export function createNavbar() {
                 "click",
                 function () {
                   // Create inbox element and append it to display
+                  
                   const display = document.querySelector("#display");
                   const inbox = createInbox(display); // pass display element as argument
                   const addForm = createAddTaskForm(display);
-                  
+                  display.removeChild(display.lastChild)
                   display.innerHTML = "";
                   display.appendChild(inbox);
                   display.appendChild(addForm)
@@ -48,7 +53,14 @@ export function createNavbar() {
               addEventListener: [
                 "click",
                 function () {
-                  // Handle click on Today
+                  console.log("today")
+                  const display = document.querySelector("#display");
+                  const today = createToday(display); // pass display element as argument
+                  const addForm = createAddTaskForm(display);
+                  display.removeChild(display.lastChild)
+                  display.innerHTML = "";
+                  display.appendChild(today);
+                  display.appendChild(addForm)
                 },
               ],
             }),

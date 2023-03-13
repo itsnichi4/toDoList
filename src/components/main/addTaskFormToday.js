@@ -1,7 +1,7 @@
-import { b } from "../../../lib/builder";
+import { b } from "../../lib/builder";
 
 
-export function createAddTaskForm() {
+export function createAddTaskFormToday() {
   const addTaskForm = b("div", {
     className: "add-task__container",
     children: [
@@ -32,15 +32,6 @@ export function createAddTaskForm() {
               b("input", {
                 className: "task-description__label",
                 name: "taskDescription",
-              }),
-              b("label", {
-                className: "task-date__label",
-                textContent: "Date",
-              }),
-              b("input", {
-                className: "task-description__label",
-                name: "taskDate",
-                type: "date",
               }),
 
               b("button", {
@@ -75,16 +66,25 @@ export function createAddTaskForm() {
   return addTaskForm;
 }
 
-function handleAddTaskFormSubmit(event) {
+
+
+function handleAddTaskFormSubmit(event) {event.preventDefault();
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = (now.getMonth() + 1).toString().padStart(2, '0');
+  const date = now.getDate().toString().padStart(2, '0');
+  const today = `${year}-${month}-${date}`;
+  
 
   document.querySelector(".add-task__container").style.display = "none";
-  document.querySelector(".inbox__hide").style.display = "block";
+  document.querySelector(".today__hide").style.display = "block";
   // extract form data
   const formData = new FormData(event.target);
   const task = {
     name: formData.get("taskName"),
     description: formData.get("taskDescription"),
-    date: formData.get("taskDate"),
+    date: today,
+    done: formData.get("isDone"),
   };
 
   // add new row to the task table
@@ -93,16 +93,18 @@ function handleAddTaskFormSubmit(event) {
   event.target.reset();
 }
 
-function addTaskToTable(task) {
+
+function addTaskToTable(task, today) {
   // Create a unique ID for the task
   const taskId = Date.now().toString();
+
 
   // Create a new task object with the ID
   const newTask = {
     id: taskId,
     name: task.name,
     description: task.description,
-    date: task.date,
+    date: today,
     done: false, // set default value of done to false
   };
 
@@ -122,6 +124,7 @@ function addTaskToTable(task) {
           b("input", {
             type: "checkbox",
             checked: false, // set default value of checkbox to false
+
           }),
           newTask.done
             ? b("span", { textContent: "Done ✓", className: "status-done" })
