@@ -4,7 +4,7 @@ import "./styles.css";
 
 
 import { renderToDoListTitle } from "./components/main/toDoList/renderToDoListTitle";
-import { createContainer } from "./components/main/createContainer";
+import { createContainer } from "./createContainer";
 
 
 renderToDoListTitle()

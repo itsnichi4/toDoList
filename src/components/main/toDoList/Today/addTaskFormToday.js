@@ -1,14 +1,14 @@
-import { b } from "../../../lib/builder";
+import { b } from "../../../../lib/builder";
 
 
-export function createAddTaskForm() {
+export function createAddTaskFormToday() {
   const labelColors = ["red", "orange", "yellow", "green", "blue", "purple"];
   const addTaskForm = b("div", {
     className: "add-task__container",
     children: [
       b("div", {
         className: "add-task-title__container",
-        textContent: "Inbox",
+        textContent: "today",
       }),
       b("div", {
         className: "form__container",
@@ -71,16 +71,6 @@ export function createAddTaskForm() {
                   }),
                 ],
               }),
-              b("label", {
-                className: "task-date__label",
-                textContent: "Date",
-              }),
-              b("input", {
-                className: "task-description__label",
-                name: "taskDate",
-                type: "date",
-              }),
-
               b("button", {
                 className: "add-task__btn",
                 value: "submit",
@@ -97,7 +87,7 @@ export function createAddTaskForm() {
                     document.querySelector(
                       ".add-task__container"
                     ).style.display = "none";
-                    document.querySelector(".inbox__hide").style.display =
+                    document.querySelector(".today__hide").style.display =
                       "block";
                     document.querySelector(".add-task__form").reset();
                   },
@@ -113,10 +103,13 @@ export function createAddTaskForm() {
   return addTaskForm;
 }
 
-function handleAddTaskFormSubmit(event) {
-  document.querySelector(".add-task__container").style.display = "none";
-  document.querySelector(".inbox__hide").style.display = "block";
 
+function handleAddTaskFormSubmit(event) {
+
+
+  document.querySelector(".add-task__container").style.display = "none";
+  document.querySelector(".today__hide").style.display = "block";
+  
   // extract form data
   const formData = new FormData(event.target);
   const task = {
@@ -129,10 +122,12 @@ function handleAddTaskFormSubmit(event) {
 
   // add new row to the task table
   addTaskToTable(task);
-
+  
   // reset form fields
   event.target.reset();
 }
+
+
 
 function addTaskToTable(task) {
   // Create a unique ID for the task
@@ -143,7 +138,7 @@ function addTaskToTable(task) {
     id: taskId,
     name: task.name,
     description: task.description,
-    date: task.date,
+    date: new Date().toISOString().slice(0, 10),
     done: false, // set default value of done to false
     priority: task.priority,
     labelColor: task.labelColor,
@@ -159,7 +154,7 @@ function addTaskToTable(task) {
     children: [
       b("td", { textContent: task.name }),
       b("td", { textContent: task.description }),
-      b("td", { textContent: task.date }),
+      b("td", { textContent: new Date().toISOString().slice(0, 10) }),
       b("td", {
         children: [
           b("span", {
@@ -209,3 +204,6 @@ function addTaskToTable(task) {
 
   return newRow;
 }
+
+
+

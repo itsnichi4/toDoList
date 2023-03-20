@@ -1,5 +1,5 @@
-import { b } from "../../lib/builder";
-import { createInbox } from "./createInbox";
+import { b } from "../../../../lib/builder";
+import { createInbox } from "../Inbox/createInbox";
 
 
 export function createDisplay() {

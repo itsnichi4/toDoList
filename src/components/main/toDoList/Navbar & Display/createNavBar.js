@@ -1,8 +1,9 @@
-import { b } from "../../lib/builder";
-import { createToday } from "./createToday";
-import { createAddTaskForm } from "./toDoList/addTaskForm";
-import { createInbox } from "./createInbox";
-
+import { b } from "../../../../lib/builder";
+import { createToday } from "../Today/createToday";
+import { createAddTaskForm } from "../addTaskForm";
+import { createInbox } from "../Inbox/createInbox";
+import { createProjects } from "../Projects/createProjects";
+import { createProjectTable } from "../Projects/addProjectsTable";
 
 export function createNavbar() {
     // Create navbar
@@ -66,27 +67,23 @@ export function createNavbar() {
             }),
             b("a", {
               className: "navbar__menu-item",
-              textContent: "Upcoming",
-              addEventListener: [
-                "click",
-                function () {
-                  // Handle click on Upcoming
-                },
-              ],
-            }),
-            b("a", {
-              className: "navbar__menu-item",
               textContent: "Projects",
               addEventListener: [
                 "click",
                 function () {
-                  // Handle click on Projects
+                  const display = document.querySelector("#display");
+                  const projects = createProjects(display)
+              
+                  display.removeChild(display.lastChild)
+                  display.innerHTML = ""
+                  display.appendChild(projects)
+                  // display.appendChild(addFormProjects)
                 },
               ],
             }),
             b("a", {
               className: "navbar__menu-item",
-              textContent: "Labels",
+              textContent: "Labels & Filters",
               addEventListener: [
                 "click",
                 function () {
@@ -94,26 +91,7 @@ export function createNavbar() {
                 },
               ],
             }),
-            b("a", {
-              className: "navbar__menu-item",
-              textContent: "Filters",
-              addEventListener: [
-                "click",
-                function () {
-                  // Handle click on Filters
-                },
-              ],
-            }),
-            b("a", {
-              className: "navbar__menu-item",
-              textContent: "Settings",
-              addEventListener: [
-                "click",
-                function () {
-                  // Handle click on Settings
-                },
-              ],
-            }),
+
           ],
         }),
       ],

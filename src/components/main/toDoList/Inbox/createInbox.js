@@ -1,5 +1,5 @@
-import { b } from "../../lib/builder";
-import { createAddTaskForm } from "./toDoList/addTaskForm";
+import { b } from "../../../../lib/builder";
+import { createAddTaskForm } from "../addTaskForm";
 import { createTaskTable } from "./createTaskTable";
 
 

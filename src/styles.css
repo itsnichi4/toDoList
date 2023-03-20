@@ -48,6 +48,10 @@ h1 {
 display:none;
 }
 
+.project-form {
+    display: none;
+}
+
 .status-done {
     color: rgb(0, 255, 0);
   }

@@ -1,13 +1,16 @@
-import { b } from "../../lib/builder";
+import { b } from "../../../../lib/builder";
 
 
-export function createAddTaskFormToday() {
+
+export function createAddProjectTasksForm(project) {
+
+  const labelColors = ["red", "orange", "yellow", "green", "blue", "purple"];
   const addTaskForm = b("div", {
     className: "add-task__container",
     children: [
       b("div", {
         className: "add-task-title__container",
-        textContent: "Inbox",
+        textContent: project,
       }),
       b("div", {
         className: "form__container",
@@ -33,26 +36,72 @@ export function createAddTaskFormToday() {
                 className: "task-description__label",
                 name: "taskDescription",
               }),
+              b("label", {
+                textContent: "Label color:",
+                htmlFor: "label-color-select",
+              }),
+              b("select", {
+                id: "label-color-select",
+                name: "labelColor", 
+                children: labelColors.map((color) => {
+                  return b("option", {
+                    value: color,
+                    textContent: color,
+                  });
+                }),
+              }),
+              
+              b("label", {
+                className: "priority__label",
+                textContent: "Priority",
+              }),
+              b("select", {
+                className: "priority__input",
+                name: "priority",
+                children: [
+                  b("option", {
+                    value: "low",
+                    textContent: "Low",
+                  }),
+                  b("option", {
+                    value: "medium",
+                    textContent: "Medium",
+                  }),
+                  b("option", {
+                    value: "high",
+                    textContent: "High",
+                  }),
+                ],
+              }),
+              b("label", {
+                className: "task-date__label",
+                textContent: "Date",
+              }),
+              b("input", {
+                className: "task-description__label",
+                name: "taskDate",
+                type: "date",
+              }),
 
               b("button", {
                 className: "add-task__btn",
                 value: "submit",
                 type: "submit",
                 innerText: "Add task",
+
               }),
               b("button", {
                 className: "add-task-cancel__btn",
                 innerText: "Cancel",
                 addEventListener: [
                   "click",
-                  (event) => {
-                    event.preventDefault();
+                  () => {
+                    
                     document.querySelector(
                       ".add-task__container"
                     ).style.display = "none";
-                    document.querySelector(".inbox__hide").style.display =
-                      "block";
                     document.querySelector(".add-task__form").reset();
+
                   },
                 ],
               }),
@@ -67,46 +116,48 @@ export function createAddTaskFormToday() {
 }
 
 
+function handleAddTaskFormSubmit(event) {
 
-function handleAddTaskFormSubmit(event) {event.preventDefault();
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = (now.getMonth() + 1).toString().padStart(2, '0');
-  const date = now.getDate().toString().padStart(2, '0');
-  const today = `${year}-${month}-${date}`;
-  
 
   document.querySelector(".add-task__container").style.display = "none";
-  document.querySelector(".today__hide").style.display = "block";
+  document.querySelector(".projects__hide").style.display = "block";
+  
   // extract form data
   const formData = new FormData(event.target);
   const task = {
     name: formData.get("taskName"),
     description: formData.get("taskDescription"),
-    date: today,
-    done: formData.get("isDone"),
+    date: formData.get("taskDate"),
+    priority: formData.get("priority"),
+    labelColor: formData.get("labelColor"),
+
   };
 
   // add new row to the task table
   addTaskToTable(task);
+  
   // reset form fields
   event.target.reset();
 }
 
 
-function addTaskToTable(task, today) {
+
+function addTaskToTable(task) {
   // Create a unique ID for the task
   const taskId = Date.now().toString();
-
 
   // Create a new task object with the ID
   const newTask = {
     id: taskId,
     name: task.name,
     description: task.description,
-    date: today,
+    date: task.date,
     done: false, // set default value of done to false
+    priority: task.priority,
+    labelColor: task.labelColor,
+    projectName: project,
   };
+
 
   // Add the task to local storage
   const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -121,10 +172,17 @@ function addTaskToTable(task, today) {
       b("td", { textContent: task.date }),
       b("td", {
         children: [
+          b("span", {
+            textContent: newTask.priority,
+            className: `priority-${newTask.priority.toLowerCase()}`,
+          }),
+          b("span", {
+            textContent: newTask.labelColor,
+            className: `label-color-${newTask.labelColor.toLowerCase()}`,
+          }),
           b("input", {
             type: "checkbox",
             checked: false, // set default value of checkbox to false
-
           }),
           newTask.done
             ? b("span", { textContent: "Done ✓", className: "status-done" })
