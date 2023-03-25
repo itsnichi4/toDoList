@@ -1,4 +1,11 @@
-export function b(tag, buildContext) {
+interface BuildContext {
+  children:[],
+  onBuild:Function
+  addEventListener:[]
+}
+
+
+export function b(tag:string, buildContext:BuildContext) {
   const element = document.createElement(tag);
 
   for (let property in buildContext) {

@@ -69,7 +69,7 @@ export function createProjectTable() {
                 const parentTdClassName = parentTd.className;
                 document.querySelector(".projects").style.display = "none";
                 const createProjectTable = createAddProjectTasksTable(parentTdClassName);
-                const projectForm = createTaskForm(projectName, handleAddTaskProjectFormSubmit.bind(null, projectName));
+                const projectForm = createTaskForm(projectName, handleAddTaskProjectFormSubmit.bind(projectName));
                 display.appendChild(projectForm);
                 display.appendChild(createProjectTable);
                 

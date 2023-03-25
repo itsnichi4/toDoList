@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/itsnichi4/toDoList#readme",
   "devDependencies": {
-    "@vitejs/plugin-react-refresh": "^2.1.0",
     "@vitejs/plugin-vue": "^1.8.2",
     "css-loader": "^6.7.0",
     "file-loader": "^6.2.0",
