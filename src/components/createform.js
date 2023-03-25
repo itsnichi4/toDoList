@@ -1,11 +1,51 @@
-import { b } from "../../../../lib/builder";
+import { b } from "../lib/builder";
+import { labeledInput } from "./labeledInput";
+import { labeledSelect } from "./labeledSelect";
+import { LabelColorSelect } from "./main/labeledSelectColors";
+import { createFormButtons } from "./createButtons";
 
-export function handleAddTaskProjectFormSubmit(projectName, event) {
 
+export function createTaskForm(title,eventListener) {
+    return b("div", {
+      className: "add-task__container",
+      children: [
+        b("div", {
+          className: "add-task-title__container",
+          textContent: title,
+        }),
+        b("form", {
+          className: "form__container",
+          
+        addEventListener: ["submit", eventListener],
+          children: [
+            labeledInput("Task Name", "taskName"),
+              
+            labeledInput("Task Description", "taskDescription"),
 
+            LabelColorSelect(
+              "Label color:",
+              "label-color-select",
+              "labelColor",
+              ["red", "orange", "yellow", "green", "blue", "purple"]
+            )
+,              
+            
+            labeledSelect("Low", "Medium", "High"),
+
+            labeledInput("Task date:", "taskDate", "date"),
+
+createFormButtons(title)
+          ],
+        }),
+      ],
+    });
+
+  }
+  
+  export function handleAddTaskFormInboxSubmit(event) {
     document.querySelector(".add-task__container").style.display = "none";
-    document.querySelector(".projects__hide").style.display = "block";
-    
+    document.querySelector(".inbox__hide").style.display = "block";
+  
     // extract form data
     const formData = new FormData(event.target);
     const task = {
@@ -14,21 +54,19 @@ export function handleAddTaskProjectFormSubmit(projectName, event) {
       date: formData.get("taskDate"),
       priority: formData.get("priority"),
       labelColor: formData.get("labelColor"),
- 
     };
   
     // add new row to the task table
-    addTaskToTable(task)
-
+    addTaskToTable(task);
+  
     // reset form fields
     event.target.reset();
-
+  }
   
-  
-  
-  function addTaskToTable(task) {
+function addTaskToTable(task) {
     // Create a unique ID for the task
     const taskId = Date.now().toString();
+  
     // Create a new task object with the ID
     const newTask = {
       id: taskId,
@@ -38,9 +76,7 @@ export function handleAddTaskProjectFormSubmit(projectName, event) {
       done: false, // set default value of done to false
       priority: task.priority,
       labelColor: task.labelColor,
-      projectName: projectName,
     };
-
   
     // Add the task to local storage
     const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -102,11 +138,3 @@ export function handleAddTaskProjectFormSubmit(projectName, event) {
   
     return newRow;
   }
-  
-  
-}
-  
-
-
-
-

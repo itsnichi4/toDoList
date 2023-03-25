@@ -1,5 +1,5 @@
 import { b } from "../../../../lib/builder";
-import { createAddTaskForm } from "../addTaskForm";
+import { createTaskForm, handleAddTaskFormInboxSubmit } from "../../../createform";
 import { createTaskTable } from "./createTaskTable";
 
 
@@ -33,7 +33,7 @@ export function createInbox() {
         ],
       }),
 
-      createAddTaskForm(),
+      createTaskForm("Inbox", handleAddTaskFormInboxSubmit),
       createTaskTable(),
     ],
   });

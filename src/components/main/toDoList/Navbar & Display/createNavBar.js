@@ -1,6 +1,6 @@
 import { b } from "../../../../lib/builder";
 import { createToday } from "../Today/createToday";
-import { createAddTaskForm } from "../addTaskForm";
+import { createTaskForm } from "../../../createform";
 import { createInbox } from "../Inbox/createInbox";
 import { createProjects } from "../Projects/createProjects";
 import { createProjectTable } from "../Projects/addProjectsTable";
@@ -40,7 +40,7 @@ export function createNavbar() {
                   
                   const display = document.querySelector("#display");
                   const inbox = createInbox(display); // pass display element as argument
-                  const addForm = createAddTaskForm(display);
+                  const addForm = createTaskForm(display);
                   display.removeChild(display.lastChild)
                   display.innerHTML = "";
                   display.appendChild(inbox);
@@ -57,7 +57,7 @@ export function createNavbar() {
                   console.log("today")
                   const display = document.querySelector("#display");
                   const today = createToday(display); // pass display element as argument
-                  const addForm = createAddTaskForm(display);
+                  const addForm = createTaskForm(display);
                   display.removeChild(display.lastChild)
                   display.innerHTML = "";
                   display.appendChild(today);
