@@ -1,0 +1,62 @@
+html, body {
+    height: 100%;
+    width: 100%;
+}
+.container, .display {
+    
+    height: 100%;
+    width: 100%;
+    
+}
+
+.display {
+    width: 100%;
+    height: 100%;
+
+}
+
+h1 {
+    text-align: center;
+    color: red;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 60%;
+    margin: 0
+}
+
+.navbar__menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%
+}
+
+.container {
+    display: flex;
+}
+
+.btn__add-task {
+    width: 100px;
+    height: 100px;
+}
+
+.add-task__container {
+display:none;
+}
+
+.project-form {
+    display: none;
+}
+
+.status-done {
+    color: rgb(0, 255, 0);
+  }
+  
+  .status-not-done {
+    color: red;
+  }
+  
