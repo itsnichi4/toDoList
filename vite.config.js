@@ -12,7 +12,9 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
+    minify:false,
     emptyOutDir: true,
+    sourcemap:true,
     rollupOptions: {
       input: path.resolve(__dirname, 'src/index.js'),
       output: {

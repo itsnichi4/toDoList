@@ -1,6 +1,6 @@
 import { b } from "./lib/builder";
-import { createNavbar } from "./_components/main/toDoList/Navbar & Display/createNavBar";
-import { createDisplay } from "./_components/main/toDoList/Navbar & Display/createDisplay";
+import { createNavbar } from "./components/Navbar/NavBar";
+import { createDisplay } from "./components/Navbar/Display";
 
 export function createContainer () {
 let createContainer = b("div", {

@@ -1,0 +1,32 @@
+./.gitignore
+./app.js
+./components/navbar.js
+./components/project/form.js
+./components/task/form.ts
+./createContainer.js
+./filepaths.txt
+./index.js
+./lib/builder.ts
+./Pages/inbox.js
+./Pages/labels-filters.js
+./Pages/projects.js
+./Pages/today.js
+./styles.css
+./_components/createform.js
+./_components/FormButtons.js
+./_components/labeledInput.js
+./_components/labeledSelect.js
+./_components/main/labeledSelectColors.js
+./_components/main/toDoList/Inbox/createInbox.js
+./_components/main/toDoList/Inbox/createTaskTable.js
+./_components/main/toDoList/Navbar & Display/createDisplay.js
+./_components/main/toDoList/Navbar & Display/createNavBar.js
+./_components/main/toDoList/Projects/addProjectsTable.js
+./_components/main/toDoList/Projects/addProjectsTaskTable.js
+./_components/main/toDoList/Projects/createAddProjectForm.js
+./_components/main/toDoList/Projects/createAddProjectTasksForm.js
+./_components/main/toDoList/Projects/createProjects.js
+./_components/main/toDoList/renderToDoListTitle.js
+./_components/main/toDoList/Today/addTaskFormToday.js
+./_components/main/toDoList/Today/createToday.js
+./_components/main/toDoList/Today/createTodayTaskTable.js
