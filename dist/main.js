@@ -39,7 +39,7 @@ function createAddTaskFormToday() {
     children: [
       b("div", {
         className: "add-task-title__container",
-        textContent: "today"
+        textContent: "Today"
       }),
       b("div", {
         className: "form__container",
@@ -308,7 +308,7 @@ function createToday() {
         children: [
           b("div", {
             className: "today__title",
-            textContent: "today"
+            textContent: "Today"
           }),
           b("div", {
             className: "today__messages",
@@ -345,7 +345,9 @@ function labeledInput(label, name, type) {
       b("input", {
         className: `${name}__input`,
         name,
-        type
+        type,
+        required: true,
+        pattern: "^(?=.*\\S)[A-Za-z0-9 ]+$"
       })
     ]
   });
@@ -677,7 +679,9 @@ function createAddProjectForm() {
       b("input", {
         type: "text",
         id: "project-name-input",
-        name: "project-name"
+        name: "project-name",
+        required: true,
+        pattern: "^(?=.*\\S)[A-Za-z0-9 ]+$"
       }),
       b("button", {
         type: "submit",
