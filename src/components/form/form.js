@@ -6,7 +6,6 @@ import { createFormButtons } from "./FormButtons";
 
 
 export function createTaskForm(title, eventListener,projectName = "") {
-  
   return b("div", {
     className: "add-task__container",
     children: [

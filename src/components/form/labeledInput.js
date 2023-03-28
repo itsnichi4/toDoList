@@ -11,8 +11,9 @@ export function labeledInput(label, name, type) {
         className: `${name}__input`,
         name: name,
         type: type,
+        required: true,
+        pattern: "^(?=.*\\S)[A-Za-z0-9 ]+$",
       }),
     ],
   });
 }
-

@@ -8,7 +8,7 @@ export function createAddTaskFormToday() {
     children: [
       b("div", {
         className: "add-task-title__container",
-        textContent: "today",
+        textContent: "Today",
       }),
       b("div", {
         className: "form__container",

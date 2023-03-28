@@ -11,7 +11,7 @@ export function createToday() {
           children: [
             b("div", {
               className: "today__title",
-              textContent: "today",
+              textContent: "Today",
             }),
             b("div", {
               className: "today__messages",

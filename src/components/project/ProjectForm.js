@@ -12,6 +12,8 @@ export function createAddProjectForm() {
         type: "text",
         id: "project-name-input",
         name: "project-name",
+        required: true,
+        pattern: "^(?=.*\\S)[A-Za-z0-9 ]+$",
       }),
       b("button", {
         type: "submit",
